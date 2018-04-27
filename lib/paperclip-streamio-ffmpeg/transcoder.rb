@@ -35,7 +35,7 @@ module Paperclip
           options.merge!(screenshot: true, seek_time: 3)
         end
         if @current_geometry.present? && @target_geometry.present?
-          options.merge!(resolution: @current_geometry.resize_to(@target_geometry.to_s).to_s)
+          options.merge!(resolution: target_resolution)
         end
         @movie.transcode(dst.path, options.merge(@convert_options), @transcoder_options)
       rescue FFMPEG::Error
@@ -43,6 +43,12 @@ module Paperclip
       end
 
       dst
+    end
+
+    private
+
+    def target_resolution
+      @current_geometry.resize_to(@target_geometry.to_s).to_s.gsub(/[#!<>)]/, '')
     end
   end
 end
