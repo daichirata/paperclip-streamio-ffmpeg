@@ -20,7 +20,68 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Edit your paperclip model:
+
+``` ruby
+# app/models/assets.rb
+
+class Asset < ApplicationRecord
+  # paperclip style
+  has_attached_file :attachment,
+                    processors: [:transcoder],
+                    styles: {
+                      thumb: {
+                        geometry: "150x150>",
+                        format: :jpeg,
+                        screenshot: true,
+                      },
+                      preview: {
+                        geometry: "1280x720>",
+                        format: :mp4,
+                      }
+                    }
+
+  # streamio-ffmpeg style
+  has_attached_file :attachment2,
+                    processors: [:transcoder],
+                    styles: {
+                      thumb: {
+                        format: :jpeg,
+                        convert_options: {
+                          resolution: "150x150",
+                          screenshot: true,
+                          seek_time: 3,
+                        }
+                        transcoder_options: {
+                          preserve_aspect_ratio: :width
+                        }
+                      },
+                      preview: {
+                        format: :mp4,
+                        convert_options: {
+                          resolution: "320x240",
+                          video_codec: "libx264",
+                          frame_rate: 10,
+                          video_bitrate: 300,
+                        }
+                      }
+                    }
+end
+```
+
+### Options
+
+* geometry
+  * See more https://github.com/thoughtbot/paperclip#post-processing .
+* format
+  * output file format.
+* convert_options
+  * See more https://github.com/streamio/streamio-ffmpeg#transcoding .
+* transcoder_options
+  * See more https://github.com/streamio/streamio-ffmpeg#transcoding .
+* screenshot
+  * shorthand for `convert_options: { screenshot: true, seek_time: 3 }`
+
 
 ## Development
 
