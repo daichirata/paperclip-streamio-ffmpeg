@@ -71,17 +71,54 @@ end
 
 ### Options
 
-* geometry
-  * See more https://github.com/thoughtbot/paperclip#post-processing .
-* format
-  * output file format.
-* convert_options
-  * See more https://github.com/streamio/streamio-ffmpeg#transcoding .
-* transcoder_options
-  * See more https://github.com/streamio/streamio-ffmpeg#transcoding .
-* screenshot
-  * shorthand for `convert_options: { screenshot: true, seek_time: 3 }`
+**geometry**
 
+If modifier is not specified, keep the aspect ratio.
+
+```
+original file: 1280x720, geometry: 640x480, output: 640x360`
+```
+
+If `!` Or `#` is specified, resizing is done ignoring the aspect ratio.
+
+```
+original file: 1280x720, geometry: 640x480!, output: 640x480
+```
+
+If `>` is specified, it will be resized only if the resolution of the original file is greater than specified. The aspect ratio is kept.
+
+```
+original file: 1280x720, geometry: 640x480>,  output: 640x360
+original file: 1280x720, geometry: 1920x1080>, output: 1280x720
+```
+
+If `<` is specified, it will be resized only if the resolution of the original file is less than specified. The aspect ratio is kept.
+
+```
+original file: 1280x720, geometry: 640x480<,  output: 1280x720
+original file: 1280x720, geometry: 1920x1080<, output: 1920x1080
+```
+
+Please specify the resolution with convert_options instead of geometry if you want to perform more detailed conversion, such as keeping the aspect in accordance with the vertical width.
+
+**format**
+
+Output file format. If you do not specify a format, it will be output in the same format as the original file.
+
+**convert_options**
+
+Specify conversion option of streamio-ffmpeg. See more https://github.com/streamio/streamio-ffmpeg#transcoding .
+
+If string is specified, its value becomes an argument to ffmpeg.
+
+
+**transcoder_options**
+
+Specify transcoder option of streamio-ffmpeg. See more https://github.com/streamio/streamio-ffmpeg#transcoding .
+
+**screenshot**
+
+Shorthand for `convert_options: { screenshot: true, seek_time: 3 }`
 
 ## Development
 
