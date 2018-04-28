@@ -2,6 +2,24 @@
 
 Video Transcoder for Paperclip using [streamio/streamio-ffmpeg](https://github.com/streamio/streamio-ffmpeg).
 
+<p align="center">
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License" />
+  </a>
+  <a href="https://rubygems.org/gems/paperclip-streamio-ffmpeg">
+    <img src="https://badge.fury.io/rb/paperclip-streamio-ffmpeg.svg" alt="Gem Version" />
+  </a>
+  <a href="https://travis-ci.org/daichirata/paperclip-streamio-ffmpeg">
+    <img src="https://travis-ci.org/daichirata/paperclip-streamio-ffmpeg.svg?branch=master" alt="Travis CI" />
+  </a>
+  <a href="https://github.com/daichirata/paperclip-streamio-ffmpeg/releases">
+    <img src="https://img.shields.io/github/release/daichirata/paperclip-streamio-ffmpeg.svg?style=flat-square" alt="Latest Version" />
+  </a>
+  <a href="https://github.com/daichirata/paperclip-streamio-ffmpeg/issues">
+    <img src="https://img.shields.io/github/issues/daichirata/paperclip-streamio-ffmpeg.svg?style=flat-square" alt="Issues" />
+  </a>
+</p>
+
 ## Installation
 
 Add this line to your application's Gemfile:
