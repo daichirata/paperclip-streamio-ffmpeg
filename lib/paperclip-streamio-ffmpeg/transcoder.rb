@@ -1,3 +1,4 @@
+require "paperclip"
 require "streamio-ffmpeg"
 
 module Paperclip
@@ -21,7 +22,7 @@ module Paperclip
 
     def make
       unless @movie.valid?
-        Paperclip.log("[transcoder] #{@movie.metadata[:error][:string]} #{@file.path}")
+        Paperclip.log("[transcoder] Unsupported file: #{@file.path} #{@movie.metadata[:error][:string]}")
         return @file
       end
 
